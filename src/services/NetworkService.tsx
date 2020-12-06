@@ -1,21 +1,26 @@
 
 function search(query: string) {
-    return new Promise( (resolve,reject) => {
-      return fetch(`api/${query}`, {
+    return new Promise( async (resolve,reject) => {
+      return await fetch(`api/${query}`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
           }
       })
         .then(parseJSON)
-        .then(data => resolve(data));
+        .then((data: any) => {
+            return resolve(data);
+        })
+        .catch((error: any) => {
+            return reject(error);
+        });
     })
   
   }
   
   function create(type: string, data: any) {
-    return new Promise((resolve, reject) => {
-      return fetch(`api/${type}`, {
+    return new Promise(async (resolve, reject) => {
+      return await fetch(`api/${type}`, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -40,5 +45,5 @@ function search(query: string) {
     return response.json();
   }
   
-  const Connection = { search, create };
-  export default Connection;
+  const NetworkService = { search, create };
+  export default NetworkService;
