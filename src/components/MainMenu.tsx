@@ -1,9 +1,9 @@
 import React from 'react';
-import { Menu, MenuItem } from '@material-ui/core';
+import { Menu, MenuItem, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import { Link } from 'react-router-dom';
-import { Path as RouteOwnerPath } from "../pages/RouteOwners";
+import { Path as RouteOwnerPath, Description as RouteOwnerDescription } from "./pages/RouteOwners/RouteOwners";
 
 export const MainMenu = (props: any) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -29,7 +29,9 @@ export const MainMenu = (props: any) => {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose}>
-            <Link to={RouteOwnerPath}>Route owners</Link>
+            <Button>
+                <Link to={RouteOwnerPath}>{RouteOwnerDescription}</Link>
+            </Button>
         </MenuItem>
       </Menu>
     </div>

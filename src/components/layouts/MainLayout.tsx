@@ -26,7 +26,8 @@ export const ContentLayout = (props: any) => {
           width:'inherit',
           display: 'inline-flex',
           alignItems: 'center', 
-          justifyContent: 'center'}}>
+          justifyContent: 'center'
+          }}>
         {props.children}
       </div>
     );

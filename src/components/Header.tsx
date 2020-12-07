@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { MainMenu } from "./molecules/MainMenu";
+import { MainMenu } from "./MainMenu";
 
 const useStyles = makeStyles((theme) => ({
     root: {

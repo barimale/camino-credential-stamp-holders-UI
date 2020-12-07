@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import NetworkService from './services/NetworkService';
-import RouteOwners, { Path as RouteOwnersPath } from './components/pages/RouteOwners';
+import RouteOwners, { Path as RouteOwnersPath } from './components/pages/RouteOwners/RouteOwners';
 import { MainLayout } from './components/layouts/MainLayout';
 import { Home, Path as HomePath } from './components/pages/Home';
 
