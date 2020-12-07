@@ -25,7 +25,8 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface withModalProps extends PropsWithChildren<any> {
-    buttonText: string
+    buttonText: string,
+    title: string
 }
 
 const WithModal = (props: withModalProps) => {
@@ -43,7 +44,8 @@ const WithModal = (props: withModalProps) => {
 
   const body = (
     <div style={modalStyle} className={classes.paper}>
-      {props.children}
+        <h3>{props.title}</h3>
+        {props.children}
     </div>
   );
 

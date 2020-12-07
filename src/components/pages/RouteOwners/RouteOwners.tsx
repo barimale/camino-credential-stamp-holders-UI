@@ -20,7 +20,7 @@ const RouteOwners: React.FC<SomeComponentProps> = ({ history }) =>  {
                 
             </Grid>
             <Button style={{alignSelf: 'left'}} onClick={goHome}>Go back</Button>
-            <WithModal buttonText={"Register"}>
+            <WithModal buttonText={"Register"} title={'Create new route owner'}>
                 <CreateRouteOwner/>
             </WithModal>
         </ContentLayout>
