@@ -1,8 +1,27 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import { makeStyles } from '@material-ui/core/styles';
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+      flexGrow: 1,
+      fontFamily: 'unset !important',
+    },
+    menuButton: {
+      marginRight: theme.spacing(2),
+    },
+    title: {
+      flexGrow: 1,
+      color: 'black'
+    },
+  }));
 
 export const Header = () =>  {
+    const classes = useStyles();
+
     return (
+        <div className={classes.root}>
+
         <header style={{
             background: '#333',
             color: '#fff',
@@ -20,6 +39,8 @@ export const Header = () =>  {
                 textDecoration: 'none',
                 textAlign: 'right'
             }} to="/">Home</Link>
-        </header>
+            <Link to="/routeOwners">routeOwners</Link>
+          </header>
+        </div>
     )
 }
