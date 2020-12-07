@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
+import { MainMenu } from "./molecules/MainMenu";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -20,27 +21,27 @@ export const Header = () =>  {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
-
-        <header style={{
+        <header className={classes.root} style={{
+            height: '64px',
             background: '#333',
             color: '#fff',
-            textAlign: 'right',
-            padding: '10px',
-            display: 'inline-flex'
+            display: 'inline-flex',
+            alignItems: 'center', 
+            justifyContent: 'center',
+            width: '90vw'
           }}>
-            <h1 style={{textAlign: 'left', paddingRight: '64px'}}>
-                Camino credential stamp holders - Admin panel
-            </h1>
             <Link style={{
                 paddingTop: '16px',
                 paddingLeft: '64px',
                 color: '#fff',
                 textDecoration: 'none',
-                textAlign: 'right'
-            }} to="/">Home</Link>
-            <Link to="/routeOwners">routeOwners</Link>
-          </header>
-        </div>
+                textAlign: 'center'
+            }} to="/">
+                <h1>
+                    Camino credential stamp holders
+                </h1>
+            </Link>
+            <MainMenu style={{textAlign: 'right'}}/>
+        </header>
     )
 }

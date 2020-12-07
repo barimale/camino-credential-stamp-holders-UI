@@ -1,14 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import { Header } from './components/Header';
 import NetworkService from './services/NetworkService';
-import RouteOwners from './components/RouteOwners';
+import RouteOwners, { Path as RouteOwnersPath } from './components/pages/RouteOwners';
 import { MainLayout } from './components/layouts/MainLayout';
-
-function Index() {
-  return <h2>Home</h2>;
-}
+import { Home, Path as HomePath } from './components/pages/Home';
 
 function App() {
   const [assets, setAssets ] = useState<Array<any>>([]);
@@ -29,15 +25,15 @@ function App() {
 
   return (
     <div  className="App" style={{
+      height: '100vh',
       alignItems: 'center',
       justifyContent: 'center'
   }}>
       <Router>
-        <Header />
         <MainLayout>
           <Switch>
-            <Route path="/" exact component={Index} />
-            <Route exact path="/routeOwners" component={() => <RouteOwners/>} />
+            <Route path={HomePath} exact component={Home} />
+            <Route exact path={RouteOwnersPath} component={() => <RouteOwners/>} />
           </Switch>
         </MainLayout>
       </Router>

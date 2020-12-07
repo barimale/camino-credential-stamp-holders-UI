@@ -1,17 +1,32 @@
-/** Default layout */
+import { Header } from '../Header';
+import { Footer } from '../Footer';
+
 export const MainLayout = (props : any) =>  {
     return (
-      <div className="main-layout">
+    <>
+        <Header />
+        <div className="main-layout" style={{
+            height: '85vh',
+            width: '90vw',
+            display: 'inline-flex',
+            justifyContent: 'center',
+            border: '1px solid black'}}>
         {props.children}
-        <footer />
-      </div>
+        </div>
+        <Footer/>
+    </>
     );
 }
 
-/** Empty layout */
-export const EmptyLayout = (props: any) => {
+export const ContentLayout = (props: any) => {
     return (
-      <div className="empty-layout">
+      <div style={{
+          border: '1px solid black',
+          height: 'inherit',
+          width:'inherit',
+          display: 'inline-flex',
+          alignItems: 'center', 
+          justifyContent: 'center'}}>
         {props.children}
       </div>
     );

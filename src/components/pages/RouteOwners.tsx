@@ -1,16 +1,19 @@
 import React from 'react'
-import NetworkService from '../services/NetworkService';
+import NetworkService from '../../services/NetworkService';
 import { RouteComponentProps, withRouter } from 'react-router';
+import { ContentLayout } from '../layouts/MainLayout';
 
 type SomeComponentProps = RouteComponentProps;
+
+export const Path = "/routeOwners";
 
 const RouteOwners: React.FC<SomeComponentProps> = ({ history }) =>  {
     const goHome = () => history.push('/');
 
     return (
-        <div>
+        <ContentLayout>
             <button onClick={goHome}>Go Home</button>;
-        </div>
+        </ContentLayout>
     )
 }
 
