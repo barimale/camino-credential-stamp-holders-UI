@@ -7,7 +7,7 @@ import { MainLayout } from './components/layouts/MainLayout';
 import { Home, Path as HomePath } from './components/pages/Home';
 
 function App() {
-  const [assets, setAssets ] = useState<Array<any>>([]);
+    const [assets, setAssets ] = useState<Array<any>>([]);
 
   const hardcodedUserId = "joe";
 

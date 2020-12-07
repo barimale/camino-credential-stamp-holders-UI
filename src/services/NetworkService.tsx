@@ -38,12 +38,31 @@ function search(query: string) {
           return reject(error);
       })
     })
-  
+  }
+
+  function get(type: string): any {
+    return new Promise(async (resolve, reject) => {
+      return await fetch(`api/${type}`, {
+        headers: {
+          'Accept': 'application/json'
+        },
+        method: 'get'
+      })
+      .then((result: any) => {
+          return parseJSON(result);
+      })
+      .then((result: any) => {
+          return resolve(result);
+       })
+      .catch((error: any) => {
+          return reject(error);
+      })
+    })
   }
   
   function parseJSON(response: any) {
     return response.json();
   }
   
-  const NetworkService = { search, create };
+  const NetworkService = { search, create, get };
   export default NetworkService;

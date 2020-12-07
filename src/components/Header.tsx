@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import { MainMenu } from "./MainMenu";
 
 const useStyles = makeStyles((theme: any) => ({
     root: {
@@ -41,7 +40,6 @@ export const Header = () =>  {
                     Camino credential stamp holders
                 </h1>
             </Link>
-            <MainMenu style={{textAlign: 'right'}}/>
         </header>
     )
 }

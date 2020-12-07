@@ -1,26 +1,50 @@
-import React from 'react';
+import React , { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
+import { RouteOwner } from "../../../../services/model/RouteOwner";
+import NetworkService from "../../../../services/NetworkService";
+import { Button, CircularProgress } from '@material-ui/core';
+import { Guid } from "guid-typescript";
 
 interface MyFormValues {
     firstName: string; 
 }
 
-export default function CreateRouteOwner() {
+export default function CreateRouteOwner(props: any) {
 const initialValues: MyFormValues = { firstName: '' };
+const [isLoading, setIsLoading ] = useState<boolean>(false);
 
   return (
     <div>
         <Formik
             initialValues={initialValues}
-            onSubmit={(values, actions) => {
-            console.log({ values, actions });
-            alert(JSON.stringify(values, null, 2));
-            actions.setSubmitting(false);
+            onSubmit={async (values, actions) => {
+                setIsLoading(true);
+                try{
+                    var newItem = new RouteOwner({
+                        id: Guid.create().toString(),
+                        name: values.firstName,
+                        balance: '0.0',
+                        insuranceContracts: '0'});
+                
+                    await NetworkService.create("RouteOwner", newItem);
+                }
+                finally{
+                    setIsLoading(false);
+                    props.close();
+                }
             }}>
             <Form>
-                <label htmlFor="firstName">First Name</label>
-                <Field id="firstName" name="firstName" placeholder="First Name" />
-                <button type="submit">Submit</button>
+                {isLoading === true ? (
+                    <div style={{alignContent: 'center'}}>
+                        <CircularProgress />
+                    </div>
+                ) : (
+                <>
+                    <label htmlFor="firstName">First Name</label>
+                    <Field id="firstName" name="firstName" placeholder="First Name" />
+                    <Button type="submit">Submit</Button>
+                </>
+                )}
             </Form>
         </Formik>
 </div>
