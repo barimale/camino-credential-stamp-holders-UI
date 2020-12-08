@@ -3,11 +3,14 @@ import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Grid, { GridSpacing } from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
+import { Path as PiligrimsPath, Description as PiligrimsDescription } from "./Piligrims/Piligrims";
 import { Path as RouteOwnerPath, Description as RouteOwnerDescription } from "./RouteOwners/RouteOwners";
 import { Button } from '@material-ui/core';
 import PeopleAltTwoToneIcon from '@material-ui/icons/PeopleAltTwoTone';
 import HomeWorkTwoToneIcon from '@material-ui/icons/HomeWorkTwoTone';
 import LocalCafeTwoToneIcon from '@material-ui/icons/LocalCafeTwoTone';
+import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
+import SettingsEthernetTwoToneIcon from '@material-ui/icons/SettingsEthernetTwoTone';
 
 export const Path = "/";
 
@@ -66,8 +69,12 @@ function SpacingGrid() {
                 <Button>
                     <Link to={RouteOwnerPath}>
                         <Paper className={classes.paper} >
-                            <h2>{RouteOwnerDescription}</h2>
-                            <HomeWorkTwoToneIcon fontSize={'large'}/>
+                            <h2>Albergues and cafeterias</h2>
+                            <span style={{display:'inline-flex', flexDirection: 'row', padding: '20px'}}>
+                              <LocalCafeTwoToneIcon fontSize={'large'}/>
+                              <SettingsEthernetTwoToneIcon fontSize={'large'}/>
+                              <HomeWorkTwoToneIcon fontSize={'large'}/>
+                            </span>
                             <br/>
                             <h4>GO</h4>
                         </Paper>
@@ -76,10 +83,10 @@ function SpacingGrid() {
             </Grid>
             <Grid key={3} item>
                 <Button>
-                    <Link to={RouteOwnerPath}>
+                    <Link to={PiligrimsPath}>
                         <Paper className={classes.paper} >
-                            <h2>{RouteOwnerDescription}</h2>
-                            <LocalCafeTwoToneIcon fontSize={'large'}/>
+                            <h2>{PiligrimsDescription}</h2>
+                            <EmojiPeopleTwoToneIcon fontSize={'large'}/>
                             <br/>
                             <h4>GO</h4>
                         </Paper>

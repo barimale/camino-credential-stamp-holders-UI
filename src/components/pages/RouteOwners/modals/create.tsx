@@ -23,8 +23,8 @@ const [isLoading, setIsLoading ] = useState<boolean>(false);
                     var newItem = new RouteOwner({
                         id: Guid.create().toString(),
                         name: values.firstName,
-                        balance: '0.0',
-                        insuranceContracts: '0'});
+                        albergues: '0',
+                        cafeterias: '0'});
                 
                     await NetworkService.create("RouteOwner", newItem);
                 }
