@@ -43,6 +43,7 @@ const [isLoading, setIsLoading ] = useState<boolean>(false);
                     <label htmlFor="firstName">First Name</label>
                     <Field id="firstName" name="firstName" placeholder="First Name" />
                     <Button type="submit">Submit</Button>
+                    <Button>Cancel</Button>
                 </>
                 )}
             </Form>

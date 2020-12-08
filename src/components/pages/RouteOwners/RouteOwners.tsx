@@ -2,11 +2,12 @@ import React, { useEffect, useState } from 'react'
 import NetworkService from '../../../services/NetworkService';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ContentLayout } from '../../layouts/MainLayout';
-import { Button, Grid } from '@material-ui/core';
+import { Button } from '@material-ui/core';
 import WithModal from '../../molecules/withModal';
 import CreateRouteOwner from './modals/create';
-import StickyHeadTable from "../../molecules/dataGrid";
+import StickyHeadTable from "./list";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
+import { RouteOwner } from "../../../services/model/RouteOwner";
 
 type RouteOwnersProps = RouteComponentProps;
 
@@ -14,7 +15,7 @@ export const Path = "/routeOwners";
 export const Description = "Route owners";
 
 const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
-    const [routeOwners, setRouteOwners ] = useState<Array<any>>([]);
+    const [routeOwners, setRouteOwners ] = useState<Array<RouteOwner>>([]);
     const goHome = () => history.push('/');
 
     useEffect(() => {
@@ -40,11 +41,7 @@ const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
                 </WithModal>
             </div>
             <ContentLayout>
-            <StickyHeadTable/>
-                {/* <Grid>
-
-                {routeOwners.map((p: RouteOwner) => {return <Row}}
-                </Grid> */}
+                <StickyHeadTable routeOwners={routeOwners}/>
             </ContentLayout>
         </>
     )
