@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import NetworkService from '../../../services/NetworkService';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ContentLayout } from '../../layouts/MainLayout';
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress } from '@material-ui/core';
 import StickyHeadTable from "./list";
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import { Piligrim } from "../../../services/model/Piligrim";
@@ -13,7 +13,9 @@ export const Path = "/piligrims";
 export const Description = "Piligrims";
 
 const Piligrims: React.FC<PiligrimsProps> = ({ history }) =>  {
-    const [piligrims, setPiligrims ] = useState<Array<Piligrim>>([]);
+    const [ piligrims, setPiligrims ] = useState<Array<Piligrim>>([]);
+    const [ isLoading, setIsLoading ] = useState<boolean>(true);
+
     const goHome = () => history.push('/');
 
     useEffect(() => {
@@ -25,7 +27,11 @@ const Piligrims: React.FC<PiligrimsProps> = ({ history }) =>  {
             });
         };
     
-        getPiligrims();
+        (async () => {
+            setIsLoading(true);
+            await getPiligrims();
+            setIsLoading(false);
+        })();
       }, []);
 
     return (
@@ -36,11 +42,15 @@ const Piligrims: React.FC<PiligrimsProps> = ({ history }) =>  {
                 </Button>
             </div>
             <ContentLayout>
-                {piligrims.length > 0 ? (
+            {isLoading === true ? (
+                <CircularProgress />
+            ) :(
+                piligrims.length > 0 ? (
                     <StickyHeadTable piligrims={piligrims}/>
                 ) : (
                     <p>There are no piligrims existed in the system.</p>
-                )}
+                )
+            )}
             </ContentLayout>
         </>
     )

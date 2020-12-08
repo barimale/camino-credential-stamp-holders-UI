@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import NetworkService from '../../../services/NetworkService';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ContentLayout } from '../../layouts/MainLayout';
-import { Button } from '@material-ui/core';
+import { Button, CircularProgress } from '@material-ui/core';
 import WithModal from '../../molecules/withModal';
 import CreateRouteOwner from './modals/create';
 import StickyHeadTable from "./list";
@@ -16,6 +16,7 @@ export const Description = "Route owners";
 
 const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
     const [routeOwners, setRouteOwners ] = useState<Array<RouteOwner>>([]);
+    const [ isLoading, setIsLoading ] = useState<boolean>(true);
     const goHome = () => history.push('/');
 
     useEffect(() => {
@@ -26,8 +27,12 @@ const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
                 setRouteOwners(data);
             });
         };
-    
-        getRouteOwners();
+
+        (async () => {
+            setIsLoading(true);
+            await getRouteOwners();
+            setIsLoading(false);
+        })();
       }, []);
 
     return (
@@ -41,10 +46,14 @@ const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
                 </WithModal>
             </div>
             <ContentLayout>
-                {routeOwners.length > 0 ? (
-                    <StickyHeadTable routeOwners={routeOwners}/>
-                ) : (
-                    <p>There are no route owners existed in the system.</p>
+                {isLoading === true ? (
+                    <CircularProgress />
+                ) :(
+                    routeOwners.length > 0 ? (
+                        <StickyHeadTable routeOwners={routeOwners}/>
+                    ) : (
+                        <p>There are no route owners existed in the system.</p>
+                    )
                 )}
             </ContentLayout>
         </>
