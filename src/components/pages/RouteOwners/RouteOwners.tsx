@@ -41,7 +41,11 @@ const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
                 </WithModal>
             </div>
             <ContentLayout>
-                <StickyHeadTable routeOwners={routeOwners}/>
+                {routeOwners.length > 0 ? (
+                    <StickyHeadTable routeOwners={routeOwners}/>
+                ) : (
+                    <p>There are no route owners existed in the system.</p>
+                )}
             </ContentLayout>
         </>
     )

@@ -36,7 +36,11 @@ const Piligrims: React.FC<PiligrimsProps> = ({ history }) =>  {
                 </Button>
             </div>
             <ContentLayout>
-                <StickyHeadTable piligrims={piligrims}/>
+                {piligrims.length > 0 ? (
+                    <StickyHeadTable piligrims={piligrims}/>
+                ) : (
+                    <p>There are no piligrims existed in the system.</p>
+                )}
             </ContentLayout>
         </>
     )

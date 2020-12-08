@@ -86,7 +86,11 @@ function SpacingGrid() {
                     <Link to={PiligrimsPath}>
                         <Paper className={classes.paper} >
                             <h2>{PiligrimsDescription}</h2>
+                            <span style={{display:'inline-flex', flexDirection: 'row', padding: '20px'}}>
+                            <EmojiPeopleTwoToneIcon fontSize={'small'}/>
                             <EmojiPeopleTwoToneIcon fontSize={'large'}/>
+                            <EmojiPeopleTwoToneIcon fontSize={'small'}/>
+                            </span>
                             <br/>
                             <h4>GO</h4>
                         </Paper>
