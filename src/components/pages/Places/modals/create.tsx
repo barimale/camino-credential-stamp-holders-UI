@@ -6,18 +6,20 @@ import { Button, CircularProgress } from '@material-ui/core';
 import { Guid } from "guid-typescript";
 import { LayerContextProvider } from '../LayerContext';
 import { Map } from "../map";
-
-interface MyFormValues {
-    name: string; 
-}
+import { PrivateAssetTransaction } from "../../../../services/model/PrivateAssetTransaction";
+import { AssetType } from '../../../../services/model/AssetType';
 
 interface CreatePlaceModalProps {
     confirm: () => void;
     cancel: () => void;
+    routeOwner: RouteOwner;
   }
 
 export default function CreatePlaceModal(props: CreatePlaceModalProps) {
-const initialValues: MyFormValues = { name: '' };
+const initialValues: PrivateAssetTransaction = new PrivateAssetTransaction({
+    id: Guid.create().toString(),
+    routeOwner: props.routeOwner});
+
 const [isLoading, setIsLoading ] = useState<boolean>(false);
 const { cancel, confirm } = props;
 
@@ -28,13 +30,11 @@ const { cancel, confirm } = props;
             onSubmit={async (values, actions) => {
                 setIsLoading(true);
                 try{
-                    var newItem = new RouteOwner({
-                        id: Guid.create().toString(),
-                        name: values.name,
-                        albergues: '0',
-                        cafeterias: '0'});
-                
-                    await NetworkService.create("RouteOwner", newItem);
+                    delete values.timestamp;
+                    delete values.transactionId;
+                    values.picture = "PUTPICTUREHERE";
+
+                    await NetworkService.create("CreateNewAsset", values);
                 }
                 catch{
                     cancel();
@@ -61,10 +61,28 @@ const { cancel, confirm } = props;
                             width: '50%',
                             height:'100%',
                             border: '1px solid black'}}>
-                            <label htmlFor="name">Put here a name of the place: </label>
+                            <label htmlFor="name">Name: </label>
                             <br/>
                             <br/>
                             <Field id="name" name="name" placeholder="name" style={{
+                                width:'70%',
+                                border: '1px solid black'}}
+                            />
+                            <br/>
+                            <br/>
+                            <label htmlFor="lon">Lon: </label>
+                            <br/>
+                            <br/>
+                            <Field id="lon" name="lon" placeholder="lon" style={{
+                                width:'70%',
+                                border: '1px solid black'}}
+                            />
+                            <br/>
+                            <br/>
+                            <label htmlFor="lang">Lang: </label>
+                            <br/>
+                            <br/>
+                            <Field id="lang" name="lang" placeholder="lang" style={{
                                 width:'70%',
                                 border: '1px solid black'}}
                             />

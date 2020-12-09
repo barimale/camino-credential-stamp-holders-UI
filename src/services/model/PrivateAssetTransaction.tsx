@@ -24,8 +24,8 @@ import { RouteOwner } from './RouteOwner';
         routeOwner: RouteOwner = new RouteOwner({});
 
         @Primed()
-        transactionId: string = '';
+        transactionId: string | undefined = undefined;
 
         @Primed()
-        timestamp: string = '';
+        timestamp: string | undefined = undefined;
     }

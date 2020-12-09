@@ -11,6 +11,7 @@ import { LayerContextProvider } from './LayerContext';
 import { useModal } from '../../hooks/useModal';
 import { Modal } from '../../molecules/Modal';
 import CreatePlaceModal from './modals/create';
+import { RouteOwner } from '../../../services/model/RouteOwner';
 
 type PlacesProps = RouteComponentProps;
 
@@ -68,6 +69,7 @@ const Piligrims: React.FC<PlacesProps> = ({ history }) =>  {
                         <CreatePlaceModal
                             confirm={toggle}
                             cancel={toggle}
+                            routeOwner= {new RouteOwner({})}
                         />
                     }
                 />

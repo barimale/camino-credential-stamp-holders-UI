@@ -51,7 +51,7 @@ export default function StickyHeadTable(props: StickyHeadTableProps) {
     var results: Array<Data> = props.places.map((p: PrivateAssetTransaction) => {
       return {
         id: p.id,
-        name: p.transactionId};
+        name: p.assetType.toString()};
     });
 
     setRows(results);
