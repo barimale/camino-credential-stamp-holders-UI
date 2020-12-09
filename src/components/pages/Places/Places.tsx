@@ -25,15 +25,20 @@ const Piligrims: React.FC<PlacesProps> = ({ history }) =>  {
 
     const goHome = () => history.push('/');
 
+    const getPlacesAsTransactions = async () => {
+        await NetworkService
+          .get('CreateNewAsset')
+          .then((data: any) => {
+              setPlaces(data);
+          });
+      };
+
+    const onConfirm = async () => {
+        await getPlacesAsTransactions();
+        toggle();
+    };
+
     useEffect(() => {
-        const getPlacesAsTransactions = async () => {
-          await NetworkService
-            .get('CreateNewAsset')
-            .then((data: any) => {
-                setPlaces(data);
-            });
-        };
-    
         (async () => {
             setIsLoading(true);
             await getPlacesAsTransactions();
@@ -59,7 +64,7 @@ const Piligrims: React.FC<PlacesProps> = ({ history }) =>  {
                             width={800}
                             modalContent={
                                 <CreatePlaceModal
-                                    confirm={toggle}
+                                    confirm={onConfirm}
                                     cancel={toggle}
                                 />
                             }
