@@ -10,25 +10,13 @@ return {
     transform: `translate(-50%, -50%)`
     };
 }
-  
-const useStyles = makeStyles((theme: Theme) =>
-createStyles({
-    paper: {
-    position: 'absolute',
-    width: 400,
-    backgroundColor: theme.palette.background.paper,
-    border: '2px solid #000',
-    boxShadow: theme.shadows[5],
-    padding: theme.spacing(2, 4, 3),
-    },
-}),
-);
 
 export interface ModalProps {
   isShown: boolean;
   hide: () => void;
   modalContent: JSX.Element;
   headerText: string;
+  width: number;
 }
 
 export const Modal: FunctionComponent<ModalProps> = ({
@@ -36,9 +24,24 @@ export const Modal: FunctionComponent<ModalProps> = ({
   hide,
   modalContent,
   headerText,
+  width
 }) => {
+  const useStyles = makeStyles((theme: Theme) =>
+      createStyles({
+          paper: {
+            position: 'absolute',
+            width: width,
+            backgroundColor: theme.palette.background.paper,
+            border: '2px solid #000',
+            boxShadow: theme.shadows[5],
+            padding: theme.spacing(2, 4, 3),
+          }
+      })
+    );
+
     const classes = useStyles();
     const [modalStyle] = React.useState(getModalStyle);
+
     const modal = (
         <InnerModal
         open={isShown}

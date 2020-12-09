@@ -52,6 +52,7 @@ const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
                 </Button>
                 <Button onClick={toggle}>Register</Button>
                 <Modal 
+                    width={400}
                     headerText={'Create new route owner'}
                     isShown={isShown}
                     hide={toggle}
