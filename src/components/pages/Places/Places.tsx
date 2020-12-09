@@ -20,7 +20,7 @@ export const Description = "Albergues and cafeterias";
 const Piligrims: React.FC<PlacesProps> = ({ history }) =>  {
     const [ places, setPlaces ] = useState<Array<PrivateAssetTransaction>>([]);
     const [ isLoading, setIsLoading ] = useState<boolean>(true);
-    const [isPressed, setIsPressed] = useState<boolean>(false);
+    const [ isPressed ] = useState<boolean>(false);
     const { isShown, toggle } = useModal();
 
     const goHome = () => history.push('/');

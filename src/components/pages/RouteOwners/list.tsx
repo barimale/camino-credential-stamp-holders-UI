@@ -56,7 +56,7 @@ export default function StickyHeadTable(props: StickyHeadTableProps) {
     });
 
     setRows(results);
-  },[props.routeOwners]);
+  }, [ props.routeOwners ]);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
@@ -77,8 +77,7 @@ export default function StickyHeadTable(props: StickyHeadTableProps) {
                 <TableCell
                   key={column.id}
                   align={column.align}
-                  style={{ minWidth: column.minWidth }}
-                >
+                  style={{ minWidth: column.minWidth }}>
                   {column.label}
                 </TableCell>
               ))}

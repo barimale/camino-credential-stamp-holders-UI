@@ -32,8 +32,8 @@ const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
         await getRouteOwners();
         toggle();
     };
+
     const onCancel = () => toggle(); 
-    
     const goHome = () => history.push('/');
 
     useEffect(() => {
