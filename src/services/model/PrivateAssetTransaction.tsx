@@ -22,8 +22,8 @@ import { RouteOwner } from './RouteOwner';
         @Primed()
         name: string = '';
 
-        @Primed(RouteOwner)
-        routeOwner: RouteOwner = new RouteOwner({});
+        @Primed()
+        routeOwner: string = '';
 
         @Primed()
         transactionId: string | undefined = undefined;
