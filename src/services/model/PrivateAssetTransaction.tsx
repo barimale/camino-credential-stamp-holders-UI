@@ -1,6 +1,5 @@
 import 'reflect-metadata';
 import { Base, Model, Primed } from './base';
-import { RouteOwner } from './RouteOwner';
 
     @Model
     export class PrivateAssetTransaction extends Base<PrivateAssetTransaction> {

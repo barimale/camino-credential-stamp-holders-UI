@@ -61,8 +61,7 @@ const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
                     modalContent={
                         <CreateRouteOwner
                             confirm={onConfirm}
-                            cancel={onCancel}
-                        />
+                            cancel={onCancel}/>
                     }
                 />
             </div>
