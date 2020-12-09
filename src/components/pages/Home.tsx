@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
-import Grid, { GridSpacing } from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import { Path as PiligrimsPath, Description as PiligrimsDescription } from "./Piligrims/Piligrims";
@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     paper: {
       height: 400,
-      width: 300,
+      width: 300
     },
     control: {
       padding: theme.spacing(2),
@@ -61,7 +61,7 @@ function SpacingGrid() {
         <Grid container justify="center" spacing={10}>
             <Grid key={1} item>
                 <Button>
-                    <Link to={appBaseRouteKey + RouteOwnerPath}>
+                    <Link style={{textDecoration: 'none'}} to={appBaseRouteKey + RouteOwnerPath}>
                         <Paper className={classes.paper} >
                             <h2>{RouteOwnerDescription}</h2>
                             <PeopleAltTwoToneIcon fontSize={'large'}/>
@@ -73,7 +73,7 @@ function SpacingGrid() {
             </Grid>
             <Grid key={2} item>
                 <Button>
-                    <Link to={appBaseRouteKey + PlacesPath}>
+                  <Link style={{textDecoration: 'none'}} to={appBaseRouteKey + PlacesPath}>
                         <Paper className={classes.paper} >
                             <h2>{PlacesDescription}</h2>
                             <span style={{display:'inline-flex', flexDirection: 'row', padding: '20px'}}>
@@ -89,17 +89,17 @@ function SpacingGrid() {
             </Grid>
             <Grid key={3} item>
                 <Button>
-                    <Link to={appBaseRouteKey + PiligrimsPath}>
-                        <Paper className={classes.paper} >
-                            <h2>{PiligrimsDescription}</h2>
-                            <span style={{display:'inline-flex', flexDirection: 'row', padding: '20px'}}>
-                            <EmojiPeopleTwoToneIcon fontSize={'small'}/>
-                            <EmojiPeopleTwoToneIcon fontSize={'large'}/>
-                            <EmojiPeopleTwoToneIcon fontSize={'small'}/>
-                            </span>
-                            <br/>
-                            <h4>GO</h4>
-                        </Paper>
+                  <Link style={{textDecoration: 'none'}} to={appBaseRouteKey + PiligrimsPath}>
+                      <Paper className={classes.paper} >
+                          <h2>{PiligrimsDescription}</h2>
+                          <span style={{display:'inline-flex', flexDirection: 'row', padding: '20px'}}>
+                          <EmojiPeopleTwoToneIcon fontSize={'small'}/>
+                          <EmojiPeopleTwoToneIcon fontSize={'large'}/>
+                          <EmojiPeopleTwoToneIcon fontSize={'small'}/>
+                          </span>
+                          <br/>
+                          <h4>GO</h4>
+                      </Paper>
                     </Link>
                 </Button>
             </Grid>
