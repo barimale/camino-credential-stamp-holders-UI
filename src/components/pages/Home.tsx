@@ -5,12 +5,14 @@ import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
 import { Path as PiligrimsPath, Description as PiligrimsDescription } from "./Piligrims/Piligrims";
 import { Path as RouteOwnerPath, Description as RouteOwnerDescription } from "./RouteOwners/RouteOwners";
+import { Path as PlacesPath, Description as PlacesDescription } from "./Places/Places";
 import { Button } from '@material-ui/core';
 import PeopleAltTwoToneIcon from '@material-ui/icons/PeopleAltTwoTone';
 import HomeWorkTwoToneIcon from '@material-ui/icons/HomeWorkTwoTone';
 import LocalCafeTwoToneIcon from '@material-ui/icons/LocalCafeTwoTone';
 import EmojiPeopleTwoToneIcon from '@material-ui/icons/EmojiPeopleTwoTone';
 import SettingsEthernetTwoToneIcon from '@material-ui/icons/SettingsEthernetTwoTone';
+import { appBaseRouteKey } from "../../App";
 
 export const Path = "/";
 
@@ -55,7 +57,7 @@ function SpacingGrid() {
         <Grid container justify="center" spacing={10}>
             <Grid key={1} item>
                 <Button>
-                    <Link to={RouteOwnerPath}>
+                    <Link to={appBaseRouteKey + RouteOwnerPath}>
                         <Paper className={classes.paper} >
                             <h2>{RouteOwnerDescription}</h2>
                             <PeopleAltTwoToneIcon fontSize={'large'}/>
@@ -67,9 +69,9 @@ function SpacingGrid() {
             </Grid>
             <Grid key={2} item>
                 <Button>
-                    <Link to={RouteOwnerPath}>
+                    <Link to={appBaseRouteKey + PlacesPath}>
                         <Paper className={classes.paper} >
-                            <h2>Albergues and cafeterias</h2>
+                            <h2>{PlacesDescription}</h2>
                             <span style={{display:'inline-flex', flexDirection: 'row', padding: '20px'}}>
                               <LocalCafeTwoToneIcon fontSize={'large'}/>
                               <SettingsEthernetTwoToneIcon fontSize={'large'}/>
@@ -83,7 +85,7 @@ function SpacingGrid() {
             </Grid>
             <Grid key={3} item>
                 <Button>
-                    <Link to={PiligrimsPath}>
+                    <Link to={appBaseRouteKey + PiligrimsPath}>
                         <Paper className={classes.paper} >
                             <h2>{PiligrimsDescription}</h2>
                             <span style={{display:'inline-flex', flexDirection: 'row', padding: '20px'}}>

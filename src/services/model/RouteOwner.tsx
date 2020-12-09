@@ -3,12 +3,12 @@ import { Base, Model, Primed } from './base';
 
     @Model
     export class RouteOwner extends Base<RouteOwner> {
-        @Primed
+        @Primed()
         id: string = '';
-        @Primed
+        @Primed()
         name: string = '';
-        @Primed
+        @Primed()
         albergues: string = '0';
-        @Primed
+        @Primed()
         cafeterias: string = '0';
     }

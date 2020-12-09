@@ -8,8 +8,6 @@ export type DeepPartial<T> = {
     : DeepPartial<T[P]>
 }
 
-export function Primed(target: any, propertyKey: string) {}
-
 export function Model<T extends Constructor>(constructor: T){
   return class extends constructor {
     constructor(...args: any[]){
@@ -31,4 +29,14 @@ export class Base<T> {
       }
     }
   }
+
+  const CONSTRUCTOR_META = Symbol('CONSTRUCTOR_META')
+
+  export function Primed(constructor?: Constructor) {
+    return (instance: any, propertyKey: string) => {
+      if(constructor)
+        Reflect.defineMetadata(CONSTRUCTOR_META, constructor, instance, propertyKey)  
+    }
+  }
+  
   

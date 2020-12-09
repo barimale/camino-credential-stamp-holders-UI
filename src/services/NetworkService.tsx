@@ -1,8 +1,12 @@
 import { store } from 'react-notifications-component';
 
+function api(): string{
+  return 'http://localhost:3005/api';
+}
+
 function search(query: string) {
     return new Promise( async (resolve,reject) => {
-      return await fetch(`api/${query}`, {
+      return await fetch(`${api()}/${query}`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -10,20 +14,6 @@ function search(query: string) {
       })
         .then(parseJSON)
         .then((data: any) => {
-          store.addNotification({
-            title: "Success",
-            message: "Object successfully created",
-            type: "success",
-            insert: "top",
-            container: "top-center",
-            animationIn: ["animate__animated", "animate__fadeIn"],
-            animationOut: ["animate__animated", "animate__fadeOut"],
-            dismiss: {
-              duration: 3000,
-              onScreen: false
-            }
-          });
-            
           return resolve(data);
         })
         .catch((error: any) => {
@@ -49,7 +39,7 @@ function search(query: string) {
   
   function create(type: string, data: any) {
     return new Promise(async (resolve, reject) => {
-      return await fetch(`api/${type}`, {
+      return await fetch(`${api()}/${type}`, {
         headers: {
           'Accept': 'application/json',
           'Content-Type': 'application/json'
@@ -79,20 +69,6 @@ function search(query: string) {
         return parseJSON(result);
       })
       .then((result: any) => {
-        store.addNotification({
-          title: "Success",
-          message: result.name + " created with id: " + result.id,
-          type: "success",
-          insert: "top",
-          container: "top-center",
-          animationIn: ["animate__animated", "animate__fadeIn"],
-          animationOut: ["animate__animated", "animate__fadeOut"],
-          dismiss: {
-            duration: 3000,
-            onScreen: false
-          }
-        });
-
         return resolve(result);
        })
       .catch((error: any) => {
@@ -117,7 +93,7 @@ function search(query: string) {
 
   function get(type: string): any {
     return new Promise(async (resolve, reject) => {
-      return await fetch(`api/${type}`, {
+      return await fetch(`${api()}/${type}`, {
         headers: {
           'Accept': 'application/json'
         },

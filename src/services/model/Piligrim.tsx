@@ -3,8 +3,9 @@ import { Base, Model, Primed } from './base';
 
     @Model
     export class Piligrim extends Base<Piligrim> {
-        @Primed
+        @Primed()
         id: string = '';
-        @Primed
+        
+        @Primed()
         name: string = '';
     }

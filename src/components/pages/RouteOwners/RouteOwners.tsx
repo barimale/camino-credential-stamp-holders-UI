@@ -67,11 +67,14 @@ const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
                 {isLoading === true ? (
                     <CircularProgress />
                 ) :(
-                    routeOwners.length > 0 ? (
-                        <StickyHeadTable routeOwners={routeOwners}/>
-                    ) : (
-                        <p>There are no route owners existed in the system.</p>
-                    )
+                    <div style={{width: '100%', height: '100%', alignItems: 'center',
+                    justifyContent: 'center', textAlign: 'center', display: 'flex'}}>
+                        {routeOwners.length > 0 ? (
+                            <StickyHeadTable routeOwners={routeOwners}/>
+                        ) : (
+                            <p>There are no route owners existed in the system.</p>
+                        )}
+                    </div>
                 )}
             </ContentLayout>
         </>

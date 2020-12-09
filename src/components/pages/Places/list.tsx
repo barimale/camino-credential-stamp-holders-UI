@@ -8,10 +8,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-import { RouteOwner } from "../../../services/model/RouteOwner";
+import { PrivateAssetTransaction } from "../../../services/model/PrivateAssetTransaction";
 
 interface Column {
-  id: 'name' | 'id' | 'albergues' | 'cafeterias';
+  id: 'name' | 'id';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -20,28 +20,12 @@ interface Column {
 
 const columns: Column[] = [
   { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'id', label: 'ID', minWidth: 100 },
-  {
-    id: 'albergues',
-    label: 'Albergues',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
-  },
-  {
-    id: 'cafeterias',
-    label: 'Cafeterias',
-    minWidth: 170,
-    align: 'right',
-    format: (value: number) => value.toLocaleString('en-US'),
-  }
+  { id: 'id', label: 'ID', minWidth: 100 }
 ];
 
 interface Data {
   id: string;
   name: string;
-  albergues: number;
-  cafeterias: number;
 }
 
 const useStyles = makeStyles({
@@ -49,13 +33,12 @@ const useStyles = makeStyles({
     width: '100%',
   },
   container: {
-    maxHeight: '700px',
-    height: 'inherit'
+    maxHeight: 440,
   },
 });
 
 interface StickyHeadTableProps{
-  routeOwners: Array<RouteOwner>;
+  places: Array<PrivateAssetTransaction>;
 }
 
 export default function StickyHeadTable(props: StickyHeadTableProps) {
@@ -65,16 +48,14 @@ export default function StickyHeadTable(props: StickyHeadTableProps) {
   const [rows, setRows ] = useState<Array<Data>>([]);
 
   useEffect(()=>{
-    var results: Array<Data> = props.routeOwners.map((p: RouteOwner) => {
+    var results: Array<Data> = props.places.map((p: PrivateAssetTransaction) => {
       return {
         id: p.id,
-        name: p.name,
-        albergues: Number(p.albergues),
-        cafeterias: Number(p.cafeterias)};
+        name: p.transactionId};
     });
 
     setRows(results);
-  },[props.routeOwners]);
+  },[props.places]);
 
   const handleChangePage = (event: unknown, newPage: number) => {
     setPage(newPage);
