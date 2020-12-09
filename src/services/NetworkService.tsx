@@ -1,3 +1,4 @@
+import { store } from 'react-notifications-component';
 
 function search(query: string) {
     return new Promise( async (resolve,reject) => {
@@ -9,10 +10,38 @@ function search(query: string) {
       })
         .then(parseJSON)
         .then((data: any) => {
-            return resolve(data);
+          store.addNotification({
+            title: "Success",
+            message: "Object successfully created",
+            type: "success",
+            insert: "top",
+            container: "top-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 3000,
+              onScreen: false
+            }
+          });
+            
+          return resolve(data);
         })
         .catch((error: any) => {
-            return reject(error);
+          store.addNotification({
+            title: "Error",
+            message: error.message,
+            type: "danger",
+            insert: "top",
+            container: "top-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 3000,
+              onScreen: false
+            }
+          });
+          
+          return reject(error);
         });
     })
   
@@ -29,13 +58,59 @@ function search(query: string) {
         body: JSON.stringify(data)
       })
       .then((result: any) => {
-          return parseJSON(result);
+        if(result.status !== 200){
+          store.addNotification({
+            title: "Error: " + result.status,
+            message: result.statusText,
+            type: "danger",
+            insert: "top",
+            container: "top-center",
+            animationIn: ["animate__animated", "animate__fadeIn"],
+            animationOut: ["animate__animated", "animate__fadeOut"],
+            dismiss: {
+              duration: 3000,
+              onScreen: false
+            }
+          });
+
+          return reject(result.statusText);
+        }
+
+        return parseJSON(result);
       })
       .then((result: any) => {
-          return resolve(result);
+        store.addNotification({
+          title: "Success",
+          message: result.name + " created with id: " + result.id,
+          type: "success",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 3000,
+            onScreen: false
+          }
+        });
+
+        return resolve(result);
        })
       .catch((error: any) => {
-          return reject(error);
+        store.addNotification({
+          title: "Error",
+          message: error.message,
+          type: "danger",
+          insert: "top",
+          container: "top-center",
+          animationIn: ["animate__animated", "animate__fadeIn"],
+          animationOut: ["animate__animated", "animate__fadeOut"],
+          dismiss: {
+            duration: 3000,
+            onScreen: false
+          }
+        });
+
+        return reject(error);
       })
     })
   }
