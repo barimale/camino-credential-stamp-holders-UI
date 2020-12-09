@@ -2,12 +2,12 @@ import React from "react";
 import { MapContainer, TileLayer } from "react-leaflet";
 import { LatLngTuple } from 'leaflet';
 
-const defaultLatLng: LatLngTuple = [48.865572, 2.283523];
-const zoom:number = 8;
+const defaultLatLng: LatLngTuple = [41.3307940691957, -8.66682345390475];
+const zoom:number = 16;
 
 export const Map = () => {
     return (
-        <MapContainer center={[51.505, -0.09]} zoom={13} scrollWheelZoom={true} style={{height: 'inherit', width: 'inherit'}}>
+        <MapContainer center={defaultLatLng} zoom={zoom} scrollWheelZoom={true} style={{height: 'inherit', width: 'inherit'}}>
         <TileLayer
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
