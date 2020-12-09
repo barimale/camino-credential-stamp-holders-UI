@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import { createContext, useState } from 'react';
 import { LatLngTuple } from 'leaflet';
 
-const LayerContext:any = React.createContext({});
+const LayerContext:any = createContext({});
 
 const LayerContextProvider = ({ children }: any) => {
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Menu, MenuItem, Button } from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import { Path as RouteOwnerPath, Description as RouteOwnerDescription } from "./pages/RouteOwners/RouteOwners";
 
 export const MainMenu = (props: any) => {
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = (event: any) => {
     setAnchorEl(event.currentTarget);

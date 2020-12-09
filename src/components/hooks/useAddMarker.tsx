@@ -1,4 +1,4 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import { useCallback, useContext, useEffect, useState } from 'react';
 import { useMap, Marker } from 'react-leaflet';
 import L, { LeafletMouseEvent } from 'leaflet';
 import { LayerContext } from '../pages/Places/LayerContext';

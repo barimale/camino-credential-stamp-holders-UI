@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { MapContainer, TileLayer, LayerGroup } from "react-leaflet";
 import { LatLngTuple } from 'leaflet';
 import { LayerContext } from "./LayerContext";

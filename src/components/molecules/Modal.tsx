@@ -1,4 +1,4 @@
-import React, { FunctionComponent, useEffect } from 'react';
+import { useState, FunctionComponent, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Modal as InnerModal } from '@material-ui/core';
@@ -40,7 +40,7 @@ export const Modal: FunctionComponent<ModalProps> = ({
     );
 
     const classes = useStyles();
-    const [modalStyle] = React.useState(getModalStyle);
+    const [modalStyle] = useState(getModalStyle);
 
     const modal = (
         <InnerModal

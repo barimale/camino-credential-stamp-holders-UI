@@ -1,4 +1,4 @@
-import React, { FunctionComponent } from 'react';
+import { useState, FunctionComponent } from 'react';
 import ReactDOM from 'react-dom';
 import { makeStyles, Theme, createStyles } from '@material-ui/core/styles';
 import { Modal as InnerModal, Button } from '@material-ui/core';
@@ -34,7 +34,7 @@ export interface ConfirmationModalProps {
 
 export const ConfirmationModal: FunctionComponent<ConfirmationModalProps> = (props: ConfirmationModalProps) => {
     const classes = useStyles();
-    const [modalStyle] = React.useState(getModalStyle);
+    const [modalStyle] = useState(getModalStyle);
     const { isShown, message, hide } = props;
 
     const modal = (

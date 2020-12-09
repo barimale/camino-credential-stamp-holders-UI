@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react';
+import * as React from 'react';
 import NetworkService from '../../../services/NetworkService';
 import { RouteComponentProps, withRouter } from 'react-router';
 import { ContentLayout } from '../../layouts/MainLayout';
