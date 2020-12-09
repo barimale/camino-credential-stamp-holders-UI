@@ -5,10 +5,11 @@ import { LayerContext } from '../pages/Places/LayerContext';
 import { Popup } from "react-leaflet";
 import GamesTwoToneIcon from '@material-ui/icons/GamesTwoTone';
 import ReactDOMServer from 'react-dom/server';
+import { LatLngTuple } from 'leaflet';
 
 function useAddMarker(selected:boolean) {
     const map = useMap();
-    const { setPoint } = useContext(LayerContext);
+    const { setPoint, setCoordinates } = useContext(LayerContext);
     const [activate, setActivate] = useState(selected);
 
     const targetIcon = <GamesTwoToneIcon style={{
@@ -26,10 +27,12 @@ function useAddMarker(selected:boolean) {
         (e: LeafletMouseEvent) => {
             e.originalEvent.preventDefault();
 
+            var results: LatLngTuple = [e.latlng.lat, e.latlng.lng];
+            setCoordinates(results);
+
             setPoint(
                 <Marker position={e.latlng}>
                     <Popup>
-                        {/* <CreatePlaceModal/> */}
                         Lat: {e.latlng.lat} <br/>
                         Lng: {e.latlng.lng} <br/>
                     </Popup>

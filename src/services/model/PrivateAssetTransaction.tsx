@@ -1,24 +1,26 @@
 import 'reflect-metadata';
-import { AssetType } from './AssetType';
 import { Base, Model, Primed } from './base';
 import { RouteOwner } from './RouteOwner';
 
     @Model
     export class PrivateAssetTransaction extends Base<PrivateAssetTransaction> {
         @Primed()
-        id: string = '';
+        id: string | undefined = '';
 
         @Primed()
-        assetType: AssetType = AssetType.ALBERGUE;
+        assetType: 'ALBERGUE' | 'CAFETERIA' = 'ALBERGUE';
 
         @Primed()
-        lon: string = '';
+        longitude: string = '';
 
         @Primed()
-        lang: string = '';
+        latitude: string = '';
 
         @Primed()
-        picture: string = '';
+        stampTemplate: string = '';
+
+        @Primed()
+        name: string = '';
 
         @Primed(RouteOwner)
         routeOwner: RouteOwner = new RouteOwner({});

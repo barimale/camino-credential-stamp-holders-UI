@@ -11,7 +11,6 @@ import { LayerContextProvider } from './LayerContext';
 import { useModal } from '../../hooks/useModal';
 import { Modal } from '../../molecules/Modal';
 import CreatePlaceModal from './modals/create';
-import { RouteOwner } from '../../../services/model/RouteOwner';
 
 type PlacesProps = RouteComponentProps;
 
@@ -43,36 +42,30 @@ const Piligrims: React.FC<PlacesProps> = ({ history }) =>  {
       }, []);
 
     return (
-        <>
+        <LayerContextProvider>
             <div>
                 <Button 
                     style={{alignSelf: 'left'}}
                     onClick={goHome}>
                     <ArrowBackIosIcon/>
                 </Button>
-                {/* <Button
-                    style={{
-                        border: isPressed ? '1px solid #C1272D' : 'unset',
-                        fontStyle: isPressed ? 'oblique' : 'unset',
-                        color: isPressed ? '#C1272D' : 'black',
-                        height: '50px'}}
-                        onClick={() => setIsPressed(!isPressed)}>
-                    Add place
-                </Button> */}
-                <Button onClick={toggle}>Add place</Button>
-                <Modal 
-                    headerText={'Add new place'}
-                    isShown={isShown}
-                    hide={toggle}
-                    width={800}
-                    modalContent={
-                        <CreatePlaceModal
-                            confirm={toggle}
-                            cancel={toggle}
-                            routeOwner= {new RouteOwner({})}
+                {isLoading === false && (
+                    <>
+                        <Button onClick={toggle}>Add place</Button>
+                        <Modal 
+                            headerText={'Add new place'}
+                            isShown={isShown}
+                            hide={toggle}
+                            width={800}
+                            modalContent={
+                                <CreatePlaceModal
+                                    confirm={toggle}
+                                    cancel={toggle}
+                                />
+                            }
                         />
-                    }
-                />
+                    </>
+                )}
             </div>
             <ContentLayout>
             {isLoading === true ? (
@@ -98,21 +91,19 @@ const Piligrims: React.FC<PlacesProps> = ({ history }) =>  {
                                 justifyContent: 'center',
                                 textAlign: 'center',
                                 display: 'flex'}}>
-                                <p>There are no places already defined in the system.</p>
+                                <p>There are no places defined in the system yet.</p>
                             </div>
                         )}
                     </div>
                     <div style={{
                         border: isPressed ? '3px solid #C1272D' : '1px solid black',
                         width: '100%', height:'inherit'}}>
-                        <LayerContextProvider>
-                            <Map isAddPlaceButtonActive={isPressed}/>
-                        </LayerContextProvider>
+                        <Map isAddPlaceButtonActive={isPressed}/>
                     </div>
                 </span>
             )}
             </ContentLayout>
-        </>
+        </LayerContextProvider>
     )
 }
 

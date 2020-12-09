@@ -31,7 +31,7 @@ export const Footer = () =>  {
             alignItems: 'center', 
             justifyContent: 'center' 
           }}>
-            Written by: Barimale
+            &copy; 2020
         </footer>
     )
 }

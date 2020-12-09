@@ -18,9 +18,7 @@ export const Path = "/";
 
 export function Home() {
     return (
-        <>
-            <SpacingGrid/>
-        </>
+      <SpacingGrid/>
     );
 }
 
@@ -47,8 +45,14 @@ function SpacingGrid() {
     <Grid item xs={12}>
         <Paper className={classes.control}>
           <Grid container>
-            <Grid item style={{alignSelf:"center"}}>
-                <h2>Admin panel</h2>
+            <Grid item style={{
+                        width: 'inherit',
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        verticalAlign: 'center',
+                        alignContent: 'center'}}>
+                <h2>Administrator console</h2>
             </Grid>
           </Grid>
         </Paper>

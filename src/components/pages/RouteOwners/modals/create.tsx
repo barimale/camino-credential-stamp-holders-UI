@@ -6,7 +6,8 @@ import { Button, CircularProgress } from '@material-ui/core';
 import { Guid } from "guid-typescript";
 
 interface MyFormValues {
-    name: string; 
+    name: string;
+    countryType: 'SPAIN' | 'PORTUGAL' | 'FRANCE';
 }
 
 interface CreateRouteOwnerModalProps {
@@ -15,7 +16,7 @@ interface CreateRouteOwnerModalProps {
   }
 
 export default function CreateRouteOwner(props: CreateRouteOwnerModalProps) {
-const initialValues: MyFormValues = { name: '' };
+const initialValues: MyFormValues = { name: '', countryType: 'PORTUGAL'};
 const [isLoading, setIsLoading ] = useState<boolean>(false);
 const { cancel, confirm } = props;
 
@@ -29,8 +30,7 @@ const { cancel, confirm } = props;
                     var newItem = new RouteOwner({
                         id: Guid.create().toString(),
                         name: values.name,
-                        albergues: '0',
-                        cafeterias: '0'});
+                        countryType: values.countryType});
                 
                     await NetworkService.create("RouteOwner", newItem);
                 }
@@ -50,10 +50,19 @@ const { cancel, confirm } = props;
                     </div>
                 ) : (
                     <>
-                        <label htmlFor="name">Put here a name of the new route owner: </label>
+                        <label htmlFor="name">Name: </label>
                         <br/>
                         <br/>
-                        <Field id="name" name="name" placeholder="name" style={{
+                        <Field id="name" name="name" style={{
+                            width:'70%',
+                            border: '1px solid black'}}
+                        />
+                        <br/>
+                        <br/>
+                        <label htmlFor="name">Country type(SPAIN, PORTUGAL, FRANCE): </label>
+                        <br/>
+                        <br/>
+                        <Field id="countryType" name="countryType" style={{
                             width:'70%',
                             border: '1px solid black'}}
                         />

@@ -1,27 +1,39 @@
-import React , { useState } from 'react';
+import React , { useContext, useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { RouteOwner } from "../../../../services/model/RouteOwner";
 import NetworkService from "../../../../services/NetworkService";
 import { Button, CircularProgress } from '@material-ui/core';
-import { Guid } from "guid-typescript";
-import { LayerContextProvider } from '../LayerContext';
+import { LayerContext } from '../LayerContext';
 import { Map } from "../map";
 import { PrivateAssetTransaction } from "../../../../services/model/PrivateAssetTransaction";
-import { AssetType } from '../../../../services/model/AssetType';
 
 interface CreatePlaceModalProps {
     confirm: () => void;
     cancel: () => void;
-    routeOwner: RouteOwner;
   }
 
 export default function CreatePlaceModal(props: CreatePlaceModalProps) {
-const initialValues: PrivateAssetTransaction = new PrivateAssetTransaction({
-    id: Guid.create().toString(),
-    routeOwner: props.routeOwner});
+const initialValues: PrivateAssetTransaction = new PrivateAssetTransaction({});
 
 const [isLoading, setIsLoading ] = useState<boolean>(false);
+const { coordinates } = useContext(LayerContext);
 const { cancel, confirm } = props;
+const [routeOwners, setRouteOwners ] = useState<Array<RouteOwner>>([]);
+
+useEffect(() => {
+    const getRouteOwners = async () => {
+        await NetworkService
+            .get('RouteOwner')
+            .then((data: any) => {
+                setRouteOwners(data);
+            });
+    };
+
+    (async () => {
+        await getRouteOwners();
+    })();
+  }, []);
+
 
   return (
     <div style={{height: '500px', width: '800px'}}>
@@ -30,9 +42,13 @@ const { cancel, confirm } = props;
             onSubmit={async (values, actions) => {
                 setIsLoading(true);
                 try{
+                    delete values.id;
                     delete values.timestamp;
                     delete values.transactionId;
-                    values.picture = "PUTPICTUREHERE";
+                    values.stampTemplate = "stampTemplate";
+                    values.longitude = coordinates[1].toString();
+                    values.latitude = coordinates[0].toString();
+                    values.routeOwner = routeOwners[0];
 
                     await NetworkService.create("CreateNewAsset", values);
                 }
@@ -66,33 +82,40 @@ const { cancel, confirm } = props;
                             <br/>
                             <Field id="name" name="name" placeholder="name" style={{
                                 width:'70%',
-                                border: '1px solid black'}}
-                            />
+                                border: '1px solid black'}}/>
                             <br/>
                             <br/>
                             <label htmlFor="lon">Lon: </label>
                             <br/>
                             <br/>
-                            <Field id="lon" name="lon" placeholder="lon" style={{
-                                width:'70%',
-                                border: '1px solid black'}}
-                            />
+                            <Field
+                                disabled
+                                id="lon"
+                                name="lon"
+                                value={coordinates === undefined ? 'unset' : coordinates[1]}
+                                style={{
+                                    width:'70%',
+                                    border: '1px solid black'}}/>
                             <br/>
                             <br/>
                             <label htmlFor="lang">Lang: </label>
                             <br/>
                             <br/>
-                            <Field id="lang" name="lang" placeholder="lang" style={{
+                            <Field 
+                                disabled
+                                id="lang"
+                                name="lang"
+                                value={coordinates === undefined ? 'unset' : coordinates[0]}
+                                style={{
                                 width:'70%',
-                                border: '1px solid black'}}
-                            />
+                                border: '1px solid black'}}/>
+                            <br/>
+                            <br/>
                         </div>
                         <div style={{
                             border: '1px solid black',
                             width: '100%', height:'inherit'}}>
-                            <LayerContextProvider>
-                                <Map isAddPlaceButtonActive={true}/>
-                            </LayerContextProvider>
+                            <Map isAddPlaceButtonActive={true}/>
                         </div>
                     </span>
                     <Button onClick={() => cancel()}>Cancel</Button>

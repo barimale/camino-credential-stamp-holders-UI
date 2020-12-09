@@ -37,7 +37,7 @@ export const Header = () =>  {
                 textAlign: 'center'
             }} to="/">
                 <h1>
-                    Camino credential stamp holders
+                    Camino Digital Credential
                 </h1>
             </Link>
         </header>

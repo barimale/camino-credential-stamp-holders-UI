@@ -50,7 +50,9 @@ const RouteOwners: React.FC<RouteOwnersProps> = ({ history }) =>  {
                 <Button style={{alignSelf: 'left'}} onClick={goHome}>
                     <ArrowBackIosIcon/>
                 </Button>
-                <Button onClick={toggle}>Register</Button>
+                {isLoading === false && (
+                    <Button onClick={toggle}>Register</Button>
+                )}
                 <Modal 
                     width={400}
                     headerText={'Create new route owner'}

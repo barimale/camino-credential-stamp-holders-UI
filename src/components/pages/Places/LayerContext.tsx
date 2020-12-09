@@ -6,10 +6,13 @@ const LayerContext:any = React.createContext({});
 const LayerContextProvider = ({ children }: any) => {
 
     const [point, setPoint] = useState<LatLngTuple>([0, 0]);
+    const [coordinates, setCoordinates] = useState<LatLngTuple>([0, 0]);
 
     const defaultValue = {
         point,
-        setPoint
+        setPoint,
+        coordinates,
+        setCoordinates
     };
 
     return (

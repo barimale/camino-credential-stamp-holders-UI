@@ -24,7 +24,7 @@ const columns: Column[] = [
 ];
 
 interface Data {
-  id: string;
+  id: string | undefined;
   name: string;
 }
 
