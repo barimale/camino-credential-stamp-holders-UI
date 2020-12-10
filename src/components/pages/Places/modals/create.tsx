@@ -50,6 +50,8 @@ useEffect(() => {
                     values.latitude = coordinates[0].toString();
                     values.routeOwner = "caminocredential.app.web.RouteOwner#" + routeOwners[0].id;
 
+                    debugger 
+                    
                     await NetworkService.create("CreateNewAsset", values);
                 }
                 catch{
@@ -85,26 +87,26 @@ useEffect(() => {
                                 border: '1px solid black'}}/>
                             <br/>
                             <br/>
-                            <label htmlFor="lon">Lon: </label>
+                            <label htmlFor="longitude">Longitude: </label>
                             <br/>
                             <br/>
                             <Field
                                 disabled
-                                id="lon"
-                                name="lon"
+                                id="longitude"
+                                name="longitude"
                                 value={coordinates === undefined ? 'unset' : coordinates[1]}
                                 style={{
                                     width:'70%',
                                     border: '1px solid black'}}/>
                             <br/>
                             <br/>
-                            <label htmlFor="lang">Lang: </label>
+                            <label htmlFor="latitude">Latitude: </label>
                             <br/>
                             <br/>
                             <Field 
                                 disabled
-                                id="lang"
-                                name="lang"
+                                id="latitude"
+                                name="latitude"
                                 value={coordinates === undefined ? 'unset' : coordinates[0]}
                                 style={{
                                 width:'70%',

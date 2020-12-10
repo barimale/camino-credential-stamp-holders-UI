@@ -12,7 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { PrivateAssetTransaction } from "../../../services/model/PrivateAssetTransaction";
 
 interface Column {
-  id: 'name' | 'id';
+  id: 'name' | 'id' | 'assetType' | 'stampTemplate';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -21,12 +21,16 @@ interface Column {
 
 const columns: Column[] = [
   { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'id', label: 'ID', minWidth: 100 }
+  { id: 'stampTemplate', label: 'Template of the stamp', minWidth: 170 },
+  { id: 'id', label: 'ID', minWidth: 100 },
+  { id: 'assetType', label: 'Type', minWidth: 170 }
 ];
 
 interface Data {
   id: string | undefined;
   name: string;
+  assetType: 'ALBERGUE' | 'CAFETERIA';
+  stampTemplate: string;
 }
 
 const useStyles = makeStyles({
@@ -51,8 +55,10 @@ export default function StickyHeadTable(props: StickyHeadTableProps) {
   useEffect(()=>{
     var results: Array<Data> = props.places.map((p: PrivateAssetTransaction) => {
       return {
-        id: p.id,
-        name: p.assetType.toString()};
+        id: p.transactionId,
+        name: p.name,
+        assetType: p.assetType,
+        stampTemplate: p.stampTemplate};
     });
 
     setRows(results);

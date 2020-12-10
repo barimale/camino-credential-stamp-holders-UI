@@ -76,15 +76,14 @@ const Piligrims: React.FC<PlacesProps> = ({ history }) =>  {
             <ContentLayout>
             {isLoading === true ? (
                 <CircularProgress />
-            ) :(
+            ) : (
                 <span style={{
                     display: 'flex',
                     flexDirection: 'row',
                     height: '100%',
                     width: '100%'}}>
                     <div style={{
-                        visibility: isPressed ? 'collapse' : 'visible',
-                        width: '50%',
+                        width: isPressed ? '50%': '100%',
                         height:'100%',
                         border: '1px solid black'}}>
                         {places.length > 0 ? (
@@ -101,11 +100,13 @@ const Piligrims: React.FC<PlacesProps> = ({ history }) =>  {
                             </div>
                         )}
                     </div>
-                    <div style={{
-                        border: isPressed ? '3px solid #C1272D' : '1px solid black',
-                        width: '100%', height:'inherit'}}>
-                        <Map isAddPlaceButtonActive={isPressed}/>
-                    </div>
+                    {isPressed && (
+                        <div style={{
+                            border: isPressed ? '3px solid #C1272D' : '1px solid black',
+                            width: '100%', height:'inherit'}}>
+                            <Map isAddPlaceButtonActive={isPressed}/>
+                        </div>
+                    )}
                 </span>
             )}
             </ContentLayout>
