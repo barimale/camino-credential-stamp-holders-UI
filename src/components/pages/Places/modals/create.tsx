@@ -48,10 +48,8 @@ useEffect(() => {
                     values.stampTemplate = "stampTemplate";
                     values.longitude = coordinates[1].toString();
                     values.latitude = coordinates[0].toString();
-                    values.routeOwner = "caminocredential.app.web.RouteOwner#" + routeOwners[0].id;
+                    values.routeOwner = "caminocredential.app.web.RouteOwner#" + routeOwners[0].id; 
 
-                    debugger 
-                    
                     await NetworkService.create("CreateNewAsset", values);
                 }
                 catch{
