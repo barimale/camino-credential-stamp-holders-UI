@@ -7,7 +7,7 @@ import { Base, Model, Primed } from './base';
         id: string | undefined = '';
 
         @Primed()
-        assetType: 'ALBERGUE' | 'CAFETERIA' = 'ALBERGUE';
+        assetType: string = '';
 
         @Primed()
         longitude: string = '';

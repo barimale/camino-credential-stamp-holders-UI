@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { RouteOwner } from "../../../../services/model/RouteOwner";
 import NetworkService from "../../../../services/NetworkService";
-import { Button, CircularProgress } from '@material-ui/core';
+import { Button, CircularProgress, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { Guid } from "guid-typescript";
 
 interface MyFormValues {
@@ -19,6 +19,20 @@ export default function CreateRouteOwner(props: CreateRouteOwnerModalProps) {
 const initialValues: MyFormValues = { name: '', countryType: 'PORTUGAL'};
 const [isLoading, setIsLoading ] = useState<boolean>(false);
 const { cancel, confirm } = props;
+const [country, setCountry] = useState<string>('PORTUGAL');
+const [open, setOpen] = useState(false);
+
+const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setCountry(event.target.value as string);
+};
+
+const handleClose = () => {
+  setOpen(false);
+};
+
+const handleOpen = () => {
+  setOpen(true);
+};
 
   return (
     <div>
@@ -30,7 +44,7 @@ const { cancel, confirm } = props;
                     var newItem = new RouteOwner({
                         id: Guid.create().toString(),
                         name: values.name,
-                        countryType: values.countryType});
+                        countryType: country});
                 
                     await NetworkService.create("RouteOwner", newItem);
                 }
@@ -59,13 +73,21 @@ const { cancel, confirm } = props;
                         />
                         <br/>
                         <br/>
-                        <label htmlFor="name">Country type(SPAIN, PORTUGAL, FRANCE): </label>
-                        <br/>
-                        <br/>
-                        <Field id="countryType" name="countryType" style={{
-                            width:'70%',
-                            border: '1px solid black'}}
-                        />
+                        <InputLabel id="demo-controlled-open-select-label">Type:</InputLabel>
+                        <Select
+                        style={{width: '80%'}}
+                        labelId="demo-controlled-open-select-label"
+                        id="demo-controlled-open-select"
+                        open={open}
+                        onClose={handleClose}
+                        onOpen={handleOpen}
+                        value={country}
+                        onChange={handleChange}
+                        >
+                            <MenuItem value={'FRANCE'}>FRANCE</MenuItem>
+                            <MenuItem value={'PORTUGAL'}>PORTUGAL</MenuItem>
+                            <MenuItem value={'SPAIN'}>SPAIN</MenuItem>
+                        </Select>
                         <br/>
                         <br/>
                         <Button onClick={() => cancel()}>Cancel</Button>

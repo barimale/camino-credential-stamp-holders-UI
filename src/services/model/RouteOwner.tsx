@@ -10,6 +10,6 @@ import { Base, Model, Primed } from './base';
         name: string = '';
 
         @Primed()
-        countryType: 'SPAIN' | 'PORTUGAL' | 'FRANCE' = 'PORTUGAL';
+        countryType: string = 'PORTUGAL';
 
     }

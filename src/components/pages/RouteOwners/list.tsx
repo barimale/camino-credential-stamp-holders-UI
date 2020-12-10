@@ -12,7 +12,7 @@ import TableRow from '@material-ui/core/TableRow';
 import { RouteOwner } from "../../../services/model/RouteOwner";
 
 interface Column {
-  id: 'name' | 'id';
+  id: 'name' | 'id' | 'countryType';
   label: string;
   minWidth?: number;
   align?: 'right';
@@ -21,12 +21,14 @@ interface Column {
 
 const columns: Column[] = [
   { id: 'name', label: 'Name', minWidth: 170 },
-  { id: 'id', label: 'ID', minWidth: 100 }
+  { id: 'id', label: 'ID', minWidth: 100 },
+  { id: 'countryType', label: 'Country', minWidth: 170 }
 ];
 
 interface Data {
   id: string;
   name: string;
+  countryType: string;
 }
 
 const useStyles = makeStyles({
@@ -53,7 +55,8 @@ export default function StickyHeadTable(props: StickyHeadTableProps) {
     var results: Array<Data> = props.routeOwners.map((p: RouteOwner) => {
       return {
         id: p.id,
-        name: p.name};
+        name: p.name,
+        countryType: p.countryType};
     });
 
     setRows(results);

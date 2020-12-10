@@ -1,8 +1,8 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Formik, Form, Field } from 'formik';
 import { RouteOwner } from "../../../../services/model/RouteOwner";
 import NetworkService from "../../../../services/NetworkService";
-import { Button, CircularProgress } from '@material-ui/core';
+import { Button, CircularProgress, InputLabel, MenuItem, Select } from '@material-ui/core';
 import { LayerContext } from '../LayerContext';
 import { Map } from "../map";
 import { PrivateAssetTransaction } from "../../../../services/model/PrivateAssetTransaction";
@@ -19,6 +19,20 @@ const [isLoading, setIsLoading ] = useState<boolean>(false);
 const { coordinates } = useContext(LayerContext);
 const { cancel, confirm } = props;
 const [routeOwners, setRouteOwners ] = useState<Array<RouteOwner>>([]);
+const [placeType, setPlaceType] = useState<string>('CAFETERIA');
+const [open, setOpen] = useState(false);
+
+const handleChange = (event: React.ChangeEvent<{ value: unknown }>) => {
+    setPlaceType(event.target.value as string);
+};
+
+const handleClose = () => {
+  setOpen(false);
+};
+
+const handleOpen = () => {
+  setOpen(true);
+};
 
 useEffect(() => {
     const getRouteOwners = async () => {
@@ -49,7 +63,9 @@ useEffect(() => {
                     values.longitude = coordinates[1].toString();
                     values.latitude = coordinates[0].toString();
                     values.routeOwner = "caminocredential.app.web.RouteOwner#" + routeOwners[0].id; 
+                    values.assetType = placeType;
 
+                    debugger
                     await NetworkService.create("CreateNewAsset", values);
                 }
                 catch{
@@ -111,6 +127,19 @@ useEffect(() => {
                                 border: '1px solid black'}}/>
                             <br/>
                             <br/>
+                            <InputLabel id="demo-controlled-open-select-label">Type:</InputLabel>
+                            <Select
+                                style={{width: '80%'}}
+                                labelId="demo-controlled-open-select-label"
+                                id="demo-controlled-open-select"
+                                open={open}
+                                onClose={handleClose}
+                                onOpen={handleOpen}
+                                value={placeType}
+                                onChange={handleChange}>
+                                <MenuItem value={'ALBERGUE'}>ALBERGUE</MenuItem>
+                                <MenuItem value={'CAFETERIA'}>CAFETERIA</MenuItem>
+                            </Select>
                         </div>
                         <div style={{
                             border: '1px solid black',

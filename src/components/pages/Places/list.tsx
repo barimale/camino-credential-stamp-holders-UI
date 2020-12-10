@@ -29,7 +29,7 @@ const columns: Column[] = [
 interface Data {
   id: string | undefined;
   name: string;
-  assetType: 'ALBERGUE' | 'CAFETERIA';
+  assetType: string;
   stampTemplate: string;
 }
 
