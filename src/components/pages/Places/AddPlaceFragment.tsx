@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import * as React from "react";
 import useAddMarker from "../../hooks/useAddMarker";
-import { Button } from "@material-ui/core";
 
 interface Props {
     isActivated: boolean;

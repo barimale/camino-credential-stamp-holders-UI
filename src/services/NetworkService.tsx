@@ -5,15 +5,21 @@ function api(): string{
 }
 
 function search(query: string) {
+  const timeout = 10000;
+  const controller = new AbortController();
+  const id = setTimeout(() => controller.abort(), timeout);
+
     return new Promise( async (resolve,reject) => {
       return await fetch(`${api()}/${query}`, {
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
-          }
+          },
+        signal: controller.signal
       })
         .then(parseJSON)
         .then((data: any) => {
+          clearTimeout(id);
           return resolve(data);
         })
         .catch((error: any) => {
