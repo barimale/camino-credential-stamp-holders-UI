@@ -37,6 +37,7 @@
     "yup": "^0.32.3"
   },
   "scripts": {
+    "setup": "npm install && yarn install --force",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
